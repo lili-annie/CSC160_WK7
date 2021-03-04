@@ -1,7 +1,7 @@
 CC=g++
 CFLAGS=-I.
-DEPS = 
-OBJ = wk7.o
+DEPS = csc160.h
+OBJ = csc160.o wk7.o
 
 %.o: %.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
