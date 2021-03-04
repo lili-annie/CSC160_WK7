@@ -1,5 +1,6 @@
 
 #include <string>
+#include <vector>
 
 using namespace std;
 
@@ -25,3 +26,9 @@ class WeatherReport {
     string getLocation();
 };
 
+
+class Plotter {
+  public:
+    void write_plot(vector<double> data, string title, string filename);
+    
+};

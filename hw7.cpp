@@ -16,7 +16,13 @@ using std::stringstream;
 //  it has been discussed in lecture, copy it here so 
 //  it can be used below
 
-
+vector<double> getTemperatureValues(vector<WeatherReport> reports) {
+  vector<double> data;
+  for (int i = 0; i < reports.size(); i++) {
+    data.push_back(reports[i].getTemperature());
+  }
+  return data;
+}
 
 vector<string> splitLine(string line) {
   stringstream lineStream(line);
@@ -64,7 +70,7 @@ int main() {
     vector<string> row = splitLine(line);
 
     double windSpeed = parseDouble(row[13]);
-    double temperature = parseDouble(row[4]);
+    double temperature = parseDouble(row[5]);
     string location = row[1];
 
     //we did this in hw4
@@ -74,6 +80,8 @@ int main() {
 
     data.push_back(report);
   }
+
+  Plotter plotter;
 
   //Organize by location, make a map to hold our results where the key is the location
   map<string,vector<WeatherReport>> byLocation;
@@ -95,10 +103,11 @@ int main() {
       string location = it->first; //first is the key, the location
       vector<WeatherReport> reports = it->second; //second is the value, the reports for this location
       cout << location << " - " << reports.size() << endl;
-
-      //STUDENT: cout the average temperature for each location
-
+      string filename = "all_temps_" + location + ".jpg";
+      string title = location + " - Temperature";
+      plotter.write_plot(getTemperatureValues(reports), title, filename);
   }
 
-  //STUDENT: find the location with the highest average temperature
+  
+  
 }
