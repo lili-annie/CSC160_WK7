@@ -1,6 +1,0 @@
-set key off
-set xtics rotate by -45
-set title '48.0 -120.0 - Temperature'
-set terminal jpeg
-set output 'all_temps_48.0 -120.0.jpg'
-plot 'plot_data.txt' using 1:2 with linespoints linetype -1 linewidth 1

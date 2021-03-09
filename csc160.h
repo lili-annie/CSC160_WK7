@@ -29,6 +29,6 @@ class WeatherReport {
 
 class Plotter {
   public:
-    void write_plot(vector<double> data, string title, string filename);
+    void write_plot(vector<vector<double>> data, vector<string> seriesNames, string title, string filename);
     
 };

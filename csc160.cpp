@@ -35,21 +35,30 @@ string WeatherReport::getLocation() {
   return this->location;
 }
 
-void Plotter::write_plot(vector<double> data, string title, string filename) {
-  
-  
+void Plotter::write_plot(vector<vector<double>> data, vector<string> seriesNames, string title, string filename) {
   ofstream txt("plot_data.txt");
-  for (int i = 0; i < data.size(); i++) {
-    string line = to_string(i) + " " + to_string(data[i]) + "\n";
+  for (int i = 0; i < data[0].size(); i++) {
+    string line = to_string(i);
+    for (int j = 0; j < data.size(); j++) {
+      line += " " + to_string(data[j][i]);
+    }
+    line += "\n";
     txt.write(line.c_str(), line.size());
   }
   txt.close();
-  string cmd = "set key off\n";
+  string cmd = "";
   cmd += "set xtics rotate by -45\n";
   cmd += "set title '" + title + "'\n";
   cmd += "set terminal jpeg\n";
   cmd += "set output '" + filename + "'\n";
-  cmd += "plot 'plot_data.txt' using 1:2 with linespoints linetype -1 linewidth 1\n";
+  cmd += "plot ";
+  for (int i = 0; i < data.size(); i++) {
+    if (i > 0) {
+      cmd += ", ";
+    }
+    cmd += "'plot_data.txt' using 1:" + to_string(i+2) + " title '" + seriesNames[i] + "' with lines linetype " + to_string(i+1) + " linewidth 1";
+  }
+  
   ofstream out_cmd("plot_commands.txt");
   out_cmd.write(cmd.c_str(), cmd.size());
   out_cmd.close();
