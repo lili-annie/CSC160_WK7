@@ -10,11 +10,16 @@ using namespace std;
 using std::ifstream;
 using std::stringstream;
 
+/*
+  STUDENT: Create a function that will take a vector of double and return a 
+           vector where the values are averaged with the two neighboring values
+           This is known as a smoothing function
+*/
 
 /*
   STUDENT:  Write a function that will take a vector of WeatherReport and
             return a vector of WeatherReport that is the daily maximum.
-            This will require adding the valid time field to the WeatheReport
+            This will require adding the valid time field to the WeatherReport
             object and then using getByLocationMap function as an example, 
             organize the reports by day.  Then find the max of each day's
             values.
@@ -127,5 +132,5 @@ int main() {
   plotter.write_plot(plot_data, rnames, "Temperature", filename);
 
   //STUDENT: Use your new function to make a plot that is the daily maximum for each location
-  
+
 }
