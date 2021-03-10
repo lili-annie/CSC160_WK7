@@ -16,6 +16,7 @@ using std::stringstream;
            This is known as a smoothing function
 */
 
+
 /*
   STUDENT:  Write a function that will take a vector of WeatherReport and
             return a vector of WeatherReport that is the daily maximum.
@@ -118,18 +119,22 @@ int main() {
   //Here we will loop over each item in the map.  An item is a key/value pair.
   //we need to 
   map<string, vector<WeatherReport>>::iterator it; //iterator that will hold the item from the map
-  for(it = byLocation.begin(); it != byLocation.end(); it++) { //each iteration, it will point to the next key/value pair
+  for (it = byLocation.begin(); it != byLocation.end(); it++) { //each iteration, it will point to the next key/value pair
       string location = it->first; //first is the key, the location
       vector<WeatherReport> reports = it->second; //second is the value, the reports for this location
       cout << location << " - " << reports.size() << endl;
 
       vector<double> locationTemperatures = getTemperatureValues(reports); //get the temperature values for this location, this is what will be plotted
+
+      //STUDENT: Add smoothing transform here
+
       plot_data.push_back(locationTemperatures); //add this location's data to the plot data
       rnames.push_back(location); //alos add this location to the list of titles
       
   }
   string filename = "all_temps.jpg";
   plotter.write_plot(plot_data, rnames, "Temperature", filename);
+
 
   //STUDENT: Use your new function to make a plot that is the daily maximum for each location
 
