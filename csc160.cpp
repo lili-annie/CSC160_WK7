@@ -35,6 +35,14 @@ string WeatherReport::getLocation() {
   return this->location;
 }
 
+void WeatherReport::setValidTime(string valid_time) {
+  this->validTime = valid_time;
+}
+
+string WeatherReport::getValidTime() {
+  return this->validTime;
+}
+
 void Plotter::write_plot(vector<vector<double>> data, vector<string> seriesNames, string title, string filename) {
   ofstream txt("plot_data.txt");
   for (int i = 0; i < data[0].size(); i++) {
